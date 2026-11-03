@@ -26,9 +26,12 @@
 <footer class="footer"><span>© 2026 Kingpin Games</span><span>A swat above the rest.</span></footer>
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()">×</button></div><div id="items"></div><div id="summary"></div></aside></div>
 <script>
-const product={name:"Flyswatter",price:29};let qty=0;
-function addToCart(){qty++;render();openCart()}
-function change(n){qty=Math.max(0,qty+n);render()}
+const product={name:"Flyswatter",price:29};
+const cartStorageKey="flyswatter-cart-qty";
+let qty=Number(localStorage.getItem(cartStorageKey)||0);
+function saveCart(){localStorage.setItem(cartStorageKey,String(qty))}
+function addToCart(){qty++;saveCart();render();openCart()}
+function change(n){qty=Math.max(0,qty+n);saveCart();render()}
 function render(){const count=document.getElementById("count");count.textContent=qty;count.classList.toggle("visible",qty>0);const items=document.getElementById("items"),summary=document.getElementById("summary");if(!qty){items.innerHTML='<div class="empty">Your cart is empty. Time to go hunting.</div>';summary.innerHTML="";return}const total=(qty*product.price).toFixed(2);items.innerHTML='<div class="cart-line"><div><strong>'+product.name+'</strong><div class="qty"><button onclick="change(-1)">−</button><span>'+qty+'</span><button onclick="change(1)">+</button></div></div><strong>$'+total+'</strong></div>';summary.innerHTML='<p><strong>Subtotal</strong><span style="float:right">$'+total+'</span></p><div class="notice">Checkout is ready to connect to Stripe. Replace the checkout action with your Stripe Payment Link before accepting live payments.</div><button class="checkout" onclick="checkout()">Continue to checkout</button>'}
 function openCart(){document.getElementById("overlay").classList.add("open")}
 function closeCart(){document.getElementById("overlay").classList.remove("open")}
