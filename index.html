@@ -13,13 +13,17 @@
 </style>
 </head>
 <body>
-<header class="nav"><a class="brand" href="index.html" aria-label="Flyswatter home"><img class="brand-logo" src="assets/flyswatter-logo.png" alt="Flyswatter"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
+<header class="nav"><div class="brand"><img class="brand-logo" src="assets/flyswatter-logo.png" alt="Flyswatter"></div><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
 <main>
-<section class="product-page">
-<div class="gallery"><div class="gallery-main"><img src="assets/flyswatter-clean.png" alt="Flyswatter game swatter illustration"></div><div class="gallery-note">The world's least peaceful game night.</div></div>
-<div class="details"><div class="eyebrow">KINGPIN GAMES · FLYSWATTER</div><h1>Swat the flies.<br><em>Save the food.</em></h1><p class="lead">You've never played a game like this. Race to swat the flies and save the food, but watch out for the ants and the horsefly!</p><div class="buy-row"><span class="price">$29</span><button class="primary" onclick="addToCart()">Add to cart</button></div><div class="facts"><div><strong>AGES</strong><span>5+</span></div><div><strong>PLAYERS</strong><span>2–5</span></div><div><strong>GAME TYPE</strong><span>Fast-action tabletop</span></div></div></div>
+<section class="hero">
+<div><h1>Swat the flies.<br><em>Save the food.</em></h1><p>Race to swat flies, steal food, and fill your bench with six of the same food before someone yells, “Party’s over!”</p><div class="actions"><button class="primary" onclick="addToCart()">Get Flyswatter — $29</button><a class="secondary" href="#how">How it works ↓</a></div></div>
+<div class="product-art" aria-label="Illustration of a flyswatter"><div class="swatter"><div class="grid"></div><div class="handle"></div></div><div class="tag">AGES 5+ · 2–5 PLAYERS</div></div>
 </section>
-<section class="section info"><h2>What’s in the box</h2><p>Everything you need for a fast, frantic race to build your food bench and stop the party before the flies win.</p><div class="features"><div class="feature"><strong>SWAT</strong><p>Flip a tile onto the picnic blanket. Hit the fly before anyone else.</p></div><div class="feature"><strong>STEAL</strong><p>Claim flies and replace tiles on your bench.</p></div><div class="feature"><strong>SCORE</strong><p>Match foods, manage ants, and avoid the horsefly.</p></div></div></section>
+<section class="section" id="how"><h2>SWAT. STEAL. SCORE.</h2><div class="features">
+<div class="feature"><strong>01 · SWAT</strong><p>Flip a tile onto the picnic blanket. Hit the fly before anyone else.</p></div>
+<div class="feature"><strong>02 · STEAL</strong><p>Claim flies and replace tiles on your bench.</p></div>
+<div class="feature"><strong>03 · SCORE</strong><p>Match foods, manage ants, and avoid the horsefly.</p></div>
+</div></section>
 </main>
 <footer class="footer"><span>© 2026 Kingpin Games</span><span>A swat above the rest.</span></footer>
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()">×</button></div><div id="items"></div><div id="summary"></div></aside></div>
