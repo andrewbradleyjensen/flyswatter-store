@@ -39,6 +39,15 @@ body:before{display:block!important;content:"";position:fixed!important;inset:0!
 </style><style>
 .nav{padding-top:30px!important}
 @media(max-width:760px){.nav{padding-top:27px!important}}
+</style><style>
+.nav{align-items:center!important;padding-top:calc(26px - 20px * var(--scroll-progress))!important;padding-bottom:calc(26px - 20px * var(--scroll-progress))!important}
+.brand{align-items:center!important;justify-content:center!important}
+.brand-logo{width:380px!important;max-height:96px!important}
+.cart-button{align-self:center!important}
+@media(max-width:760px){
+.nav{padding-top:calc(24px - 16px * var(--scroll-progress))!important;padding-bottom:calc(24px - 16px * var(--scroll-progress))!important}
+.brand-logo{width:min(290px,calc(100vw - 150px))!important;max-height:74px!important}
+}
 </style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
