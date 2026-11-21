@@ -6,7 +6,7 @@ export async function onRequestPost({ request, env }) {
 
     const body = await request.json().catch(() => ({}));
     const quantity = Math.min(Math.max(Number(body.quantity) || 1, 1), 10);
-    const siteUrl = env.SITE_URL || new URL(request.url).origin;
+    const siteUrl = new URL(request.url).origin;
     const params = new URLSearchParams();
 
     params.set("mode", "payment");
