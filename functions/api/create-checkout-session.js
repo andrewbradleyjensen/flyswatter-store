@@ -12,7 +12,7 @@ export async function onRequestPost({ request, env }) {
     params.set("mode", "payment");
     params.set("line_items[0][price]", env.STRIPE_PRICE_ID);
     params.set("line_items[0][quantity]", String(quantity));
-    params.set("success_url", siteUrl + "/product.html?checkout=success&session_id={CHECKOUT_SESSION_ID}");
+    params.set("success_url", siteUrl + "/success.html?session_id={CHECKOUT_SESSION_ID}");
     params.set("cancel_url", siteUrl + "/product.html?checkout=cancelled");
     params.set("customer_creation", "always");
     params.set("billing_address_collection", "auto");
