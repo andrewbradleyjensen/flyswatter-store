@@ -18,7 +18,6 @@ export async function onRequestPost({ request, env }) {
     params.set("automatic_tax[enabled]", "false");
     params.set("submit_type", "auto");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
-    params.set("permissions[update][shipping_details]", "server_only");
     params.set("shipping_options[0][shipping_rate]", env.STRIPE_SHIPPING_RATE_CONTIGUOUS);
     params.set("integration_identifier", "custom_embedded_web_0001");
     params.set("return_url", siteUrl + "/success.html?session_id={CHECKOUT_SESSION_ID}");
