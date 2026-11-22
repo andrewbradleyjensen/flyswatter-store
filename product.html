@@ -185,8 +185,6 @@ async function startCheckout(quantity=1){
   const button=document.getElementById("preorder-button");
   const formContainer=document.getElementById("checkout-form");
   const error=document.getElementById("checkout-error");
-  button.disabled=true;
-  button.textContent="Loading checkout…";
   formContainer.hidden=false;
   try{
     const configResponse=await fetch("/api/stripe-config");
@@ -227,7 +225,6 @@ async function startCheckout(quantity=1){
       try{await actionsResult.actions.confirm({formConfirmEvent:event})}
       catch(confirmError){showCheckoutError(confirmError.message||"Payment could not be completed.")}
     });
-    button.textContent="Checkout below";
   }catch(error){
     showCheckoutError(error.message||"Unable to start checkout.");
     button.disabled=false;
