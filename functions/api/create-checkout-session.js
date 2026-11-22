@@ -1,16 +1,12 @@
 export async function onRequestPost({ request, env }) {
   try {
-    if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PRICE_ID || !env.STRIPE_SHIPPING_RATE_CONTIGUOUS || !env.STRIPE_SHIPPING_RATE_AK_HI) {
-      return json({ error: "Stripe is not fully configured. Add the Stripe secret, price, and both shipping rate IDs in Cloudflare." }, 500);
+    if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PRICE_ID || !env.STRIPE_SHIPPING_RATE_CONTIGUOUS) {
+      return json({ error: "Stripe is not fully configured. Add the Stripe secret, price, and shipping rate ID in Cloudflare." }, 500);
     }
 
     const body = await request.json().catch(() => ({}));
     const quantity = Math.min(Math.max(Number(body.quantity) || 1, 1), 10);
-    const shippingZone = body.shipping_zone === "ak-hi" ? "ak-hi" : body.shipping_zone === "contiguous" ? "contiguous" : "";
-    if (!shippingZone) return json({ error: "Choose a shipping destination before checkout." }, 400);
-    const shippingRate = shippingZone === "ak-hi"
-      ? env.STRIPE_SHIPPING_RATE_AK_HI
-      : env.STRIPE_SHIPPING_RATE_CONTIGUOUS;
+    const shippingRate = env.STRIPE_SHIPPING_RATE_CONTIGUOUS;
     const siteUrl = new URL(request.url).origin;
     const params = new URLSearchParams();
 
@@ -30,7 +26,7 @@ export async function onRequestPost({ request, env }) {
     params.set("allow_promotion_codes", "true");
     params.set("metadata[product]", "FLYSWATTER");
     params.set("metadata[order_type]", "preorder");
-    params.set("metadata[shipping_zone]", shippingZone);
+    params.set("metadata[shipping_zone]", "us-standard");
 
     const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
