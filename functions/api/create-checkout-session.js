@@ -14,6 +14,9 @@ export async function onRequestPost({ request, env }) {
     params.set("mode", "payment");
     params.set("line_items[0][price]", env.STRIPE_PRICE_ID);
     params.set("line_items[0][quantity]", String(quantity));
+    params.set("line_items[0][adjustable_quantity][enabled]", "true");
+    params.set("line_items[0][adjustable_quantity][minimum]", "1");
+    params.set("line_items[0][adjustable_quantity][maximum]", "10");
     params.set("billing_address_collection", "auto");
     params.set("phone_number_collection[enabled]", "false");
     params.set("automatic_tax[enabled]", "false");
