@@ -599,6 +599,44 @@ button.primary,
     align-self:auto !important;
   }
 }
+</style>
+<style id="footer-text-grid-center">
+@media (min-width:761px) {
+  .footer-inner {
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto 170px !important;
+    align-items:center !important;
+    column-gap:22px !important;
+    padding:28px 28px 16px !important;
+  }
+  .footer-copyright {
+    grid-column:1 !important;
+    align-self:center !important;
+    margin:0 !important;
+  }
+  .footer-links {
+    grid-column:2 !important;
+    align-self:center !important;
+    justify-self:end !important;
+    margin:0 !important;
+    gap:18px !important;
+  }
+  .footer-brand-logo {
+    grid-column:3 !important;
+    position:absolute !important;
+    right:max(28px,calc((100% - 1180px)/2)) !important;
+    top:0 !important;
+    width:170px !important;
+    transform:translateY(-50%) !important;
+  }
+}
+@media (max-width:760px) {
+  .footer-inner {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+  }
+}
 </style></head><body><header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header><main class="policy"><span class="draft">DRAFT — UPDATE BEFORE LAUNCH</span><div class="eyebrow">FLYSWATTER · RETURNS</div><h1>Returns & Refunds</h1><p>These are starter terms for the prelaunch store and will be finalized before orders open.</p><h2>Expected return window</h2><p>We expect to accept return requests within 30 days of delivery for unopened, unused games in resalable condition.</p><h2>Damaged or incorrect orders</h2><p>Contact us as soon as possible if an order arrives damaged, incomplete, or incorrect. We will publish the support contact and return instructions before checkout launches.</p><h2>Refunds</h2><p>Approved refunds are expected to be issued to the original payment method after the returned item is received and reviewed. Final exclusions, return-shipping responsibility, and timing will be posted before launch.</p></main><footer class="footer" style="background:#4E2630!important;border-top:0!important;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding:0!important"><div class="footer-inner"><img class="footer-brand-logo" src="assets/kingpin-entertainment-logo.webp" alt="Kingpin Entertainment"><span class="footer-copyright">© Kingpin Entertainment</span><nav class="footer-links" aria-label="Footer links"><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav></div></footer><div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()">×</button></div><div id="items"></div><div id="summary"></div></aside></div><script>
 const product={name:"FLYSWATTER",price:34},cartStorageKey="flyswatter-cart-qty";
 let qty=Number(localStorage.getItem(cartStorageKey)||0);
