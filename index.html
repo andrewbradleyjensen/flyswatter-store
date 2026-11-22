@@ -508,6 +508,61 @@ body:before{display:block!important;content:"";position:fixed!important;inset:0!
   .hero-features .feature:nth-child(2) { transform:translateX(42px) rotate(.6deg) !important; }
   .hero-features .feature:nth-child(3) { transform:translateX(84px) rotate(-.8deg) !important; }
 }
+</style>
+<style id="desktop-hero-card-safe-zone">
+@media (min-width: 761px) {
+  .hero {
+    min-height:930px !important;
+  }
+  .hero-features {
+    left:8% !important;
+    top:430px !important;
+    width:310px !important;
+    max-width:310px !important;
+    gap:12px !important;
+  }
+  .hero-features .feature {
+    width:310px !important;
+    max-width:310px !important;
+    min-height:136px !important;
+    padding:17px 19px !important;
+  }
+  .hero-features .feature:first-child {
+    transform:translateX(0) rotate(-1deg) !important;
+  }
+  .hero-features .feature:nth-child(2) {
+    transform:translateX(50px) rotate(.6deg) !important;
+  }
+  .hero-features .feature:nth-child(3) {
+    transform:translateX(100px) rotate(-.8deg) !important;
+  }
+  .section#launch {
+    padding-top:58px !important;
+  }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .hero {
+    min-height:880px !important;
+  }
+  .hero-features {
+    left:5% !important;
+    top:405px !important;
+    width:280px !important;
+    max-width:280px !important;
+  }
+  .hero-features .feature {
+    width:280px !important;
+    max-width:280px !important;
+    min-height:124px !important;
+    padding:15px 17px !important;
+  }
+  .hero-features .feature:nth-child(2) {
+    transform:translateX(34px) rotate(.6deg) !important;
+  }
+  .hero-features .feature:nth-child(3) {
+    transform:translateX(68px) rotate(-.8deg) !important;
+  }
+}
 </style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
