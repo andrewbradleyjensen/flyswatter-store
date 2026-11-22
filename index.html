@@ -1062,6 +1062,83 @@ button.primary,
     padding-bottom:58px !important;
   }
 }
+</style>
+<style id="home-card-diagonal-offset">
+@media (min-width:761px) {
+  .how-preview {
+    position:relative !important;
+    z-index:7 !important;
+    margin-top:-185px !important;
+    padding:0 32px 188px !important;
+  }
+  .how-preview .hero-features {
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:390px !important;
+    max-width:390px !important;
+    margin:0 0 0 130px !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+  }
+  .how-preview .hero-features .feature {
+    width:350px !important;
+    min-height:158px !important;
+  }
+  .how-preview .hero-features .feature:nth-child(1) {
+    transform:translate(0,0) rotate(-1deg) !important;
+  }
+  .how-preview .hero-features .feature:nth-child(2) {
+    transform:translate(56px,32px) rotate(.6deg) !important;
+  }
+  .how-preview .hero-features .feature:nth-child(3) {
+    transform:translate(112px,64px) rotate(-.8deg) !important;
+  }
+}
+@media (min-width:761px) and (max-width:1100px) {
+  .how-preview {
+    margin-top:-145px !important;
+    padding-left:24px !important;
+    padding-right:24px !important;
+    padding-bottom:150px !important;
+  }
+  .how-preview .hero-features {
+    width:330px !important;
+    max-width:330px !important;
+    margin-left:64px !important;
+  }
+  .how-preview .hero-features .feature {
+    width:300px !important;
+    min-height:142px !important;
+  }
+  .how-preview .hero-features .feature:nth-child(2) {
+    transform:translate(42px,26px) rotate(.6deg) !important;
+  }
+  .how-preview .hero-features .feature:nth-child(3) {
+    transform:translate(84px,52px) rotate(-.8deg) !important;
+  }
+}
+@media (max-width:760px) {
+  .how-preview {
+    margin-top:0 !important;
+    padding:12px 18px 58px !important;
+  }
+  .how-preview .hero-features {
+    margin:0 !important;
+    width:100% !important;
+    max-width:none !important;
+    gap:12px !important;
+  }
+  .how-preview .hero-features .feature,
+  .how-preview .hero-features .feature:nth-child(1),
+  .how-preview .hero-features .feature:nth-child(2),
+  .how-preview .hero-features .feature:nth-child(3) {
+    width:100% !important;
+    min-height:0 !important;
+    transform:none !important;
+  }
+}
 </style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
