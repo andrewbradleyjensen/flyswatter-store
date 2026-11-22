@@ -189,7 +189,7 @@ async function startCheckout(quantity=1){
     const sessionResponse=await fetch("/api/create-checkout-session",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({quantity:1})
+      body:JSON.stringify({quantity})
     });
     const session=await sessionResponse.json();
     if(!sessionResponse.ok||!session.client_secret)throw new Error(session.error||"Unable to start checkout.");
