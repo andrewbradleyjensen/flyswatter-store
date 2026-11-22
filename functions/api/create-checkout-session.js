@@ -16,7 +16,6 @@ export async function onRequestPost({ request, env }) {
     params.set("billing_address_collection", "auto");
     params.set("phone_number_collection[enabled]", "false");
     params.set("automatic_tax[enabled]", "false");
-    params.set("payment_method_collection", "always");
     params.set("submit_type", "auto");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
     params.set("integration_identifier", "custom_embedded_web_0001");
