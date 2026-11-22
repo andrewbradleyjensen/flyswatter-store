@@ -467,12 +467,166 @@ button.primary,
 .facts div {
   box-shadow:none !important;
 }
+</style>
+<style id="professional-product-carousel">
+.gallery-frame {
+  background:rgba(243,224,196,.76) !important;
+  border:2px solid rgba(78,38,48,.28) !important;
+  border-radius:24px !important;
+  overflow:hidden !important;
+  box-shadow:none !important;
+}
+.slide {
+  transition:opacity .22s ease, transform .22s ease !important;
+}
+.slide.active {
+  animation:gallery-slide-in .24s ease both;
+}
+.slide img {
+  transform:rotate(-2deg) !important;
+  filter:drop-shadow(0 10px 12px rgba(23,22,18,.16));
+}
+.slide.placeholder {
+  display:none;
+  align-content:center;
+  justify-items:center;
+  gap:10px;
+  border:2px dashed rgba(78,38,48,.4) !important;
+  border-radius:16px;
+  background:rgba(255,255,255,.18);
+  color:#4E2630 !important;
+  letter-spacing:.03em;
+}
+.slide.placeholder.active {
+  display:grid !important;
+}
+.slide.placeholder::before {
+  content:"PHOTO SLOT";
+  font-family:"Montserrat",sans-serif;
+  font-size:.72rem;
+  letter-spacing:.16em;
+  color:#384A28;
+}
+.gallery-controls {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:16px !important;
+  margin-top:14px !important;
+  padding:10px 12px !important;
+  border:2px solid rgba(78,38,48,.22) !important;
+  border-radius:999px !important;
+  background:rgba(243,224,196,.9) !important;
+}
+.gallery-navigation {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:0;
+}
+.gallery-counter {
+  color:#4E2630;
+  font-size:.78rem;
+  font-weight:900;
+  letter-spacing:.1em;
+  white-space:nowrap;
+}
+.gallery-arrow {
+  display:grid !important;
+  place-items:center !important;
+  width:42px !important;
+  height:42px !important;
+  flex:0 0 auto !important;
+  border:0 !important;
+  border-radius:50% !important;
+  background:#4E2630 !important;
+  color:#F3E0C4 !important;
+  font-size:1.2rem !important;
+  line-height:1 !important;
+  box-shadow:none !important;
+  transition:transform .18s ease, background .18s ease !important;
+}
+.gallery-arrow:hover {
+  transform:scale(1.06);
+  background:#C14B10 !important;
+}
+.dots {
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+}
+.dot {
+  display:grid !important;
+  place-items:center !important;
+  width:34px !important;
+  height:28px !important;
+  min-width:34px !important;
+  padding:0 !important;
+  border:1px solid rgba(78,38,48,.42) !important;
+  border-radius:999px !important;
+  background:transparent !important;
+  color:#4E2630 !important;
+  font-size:.68rem !important;
+  font-weight:900 !important;
+  box-shadow:none !important;
+}
+.dot.active {
+  background:#C14B10 !important;
+  border-color:#C14B10 !important;
+  color:#fff !important;
+}
+.gallery-hint {
+  margin:9px 0 0 !important;
+  text-align:center !important;
+  color:#4e5b54 !important;
+  font-size:.78rem !important;
+  letter-spacing:.02em;
+}
+@keyframes gallery-slide-in {
+  from { opacity:.35; transform:translateX(8px); }
+  to { opacity:1; transform:translateX(0); }
+}
+@media (max-width:760px) {
+  .gallery-frame {
+    height:auto !important;
+    min-height:0 !important;
+    aspect-ratio:1 / 1.08 !important;
+    border-radius:20px !important;
+  }
+  .slide {
+    height:100% !important;
+    min-height:0 !important;
+    padding:20px !important;
+  }
+  .gallery-controls {
+    gap:8px !important;
+    padding:8px !important;
+  }
+  .gallery-navigation {
+    gap:8px;
+  }
+  .gallery-counter {
+    display:none;
+  }
+  .gallery-arrow {
+    width:40px !important;
+    height:40px !important;
+  }
+  .dot {
+    width:32px !important;
+    min-width:32px !important;
+  }
+  .gallery-hint {
+    font-size:.72rem !important;
+  }
+}
 </style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
 <main>
 <section class="product">
-<div><div class="gallery-frame" aria-label="FLYSWATTER product image carousel"><div class="slide active"><img src="assets/flyswatter-clean.png" alt="FLYSWATTER"></div><div class="slide placeholder">Product photo coming soon</div><div class="slide placeholder">Box photo coming soon</div></div><div class="gallery-controls"><button class="gallery-arrow" onclick="moveSlide(-1)" aria-label="Previous product image">‹</button><div class="dots" aria-label="Choose product image"><button class="dot active" onclick="showSlide(0)" aria-label="Show image 1"></button><button class="dot" onclick="showSlide(1)" aria-label="Show image 2"></button><button class="dot" onclick="showSlide(2)" aria-label="Show image 3"></button></div><button class="gallery-arrow" onclick="moveSlide(1)" aria-label="Next product image">›</button></div></div>
+<div><div class="gallery-frame" aria-label="FLYSWATTER product image carousel"><div class="slide active"><img src="assets/flyswatter-clean.png" alt="FLYSWATTER"></div><div class="slide placeholder">Product photo coming soon</div><div class="slide placeholder">Box photo coming soon</div></div><div class="gallery-controls" aria-label="Product image navigation"><button class="gallery-arrow" onclick="moveSlide(-1)" aria-label="Previous product image">←</button><div class="gallery-navigation"><div class="gallery-counter" aria-live="polite"><span id="gallery-current">01</span><span aria-hidden="true"> / 03</span></div><div class="dots" aria-label="Choose product image"><button class="dot active" onclick="showSlide(0)" aria-label="Show image 1"><span>01</span></button><button class="dot" onclick="showSlide(1)" aria-label="Show image 2"><span>02</span></button><button class="dot" onclick="showSlide(2)" aria-label="Show image 3"><span>03</span></button></div></div><button class="gallery-arrow" onclick="moveSlide(1)" aria-label="Next product image">→</button></div><p class="gallery-hint">Swipe or use the arrows to browse</p></div>
 <div class="details"><div class="status-pill">PREORDER NOW</div><div class="product-name">FLYSWATTER</div><h1>Swat the flies.<br><em>Save the food.</em></h1><p class="lead">FLYSWATTER is a fast, chaotic tabletop game where everyone races to swat flying tiles, steal food, and build a matching bench before someone calls, “PARTY’S OVER!”</p><div class="buy-row"><span class="price">$34</span><button class="primary" id="preorder-button" type="button" onclick="startPreorder()">Preorder Now</button><button class="secondary add-to-cart-button" type="button" onclick="addToCart()">Add to Cart</button></div><div class="facts"><div><strong>AGES</strong><span>5+</span></div><div><strong>PLAYERS</strong><span>2–5</span></div><div><strong>PLAY STYLE</strong><span>Fast-action tabletop</span></div></div></div>
 </section>
 <section class="details-section"><h2>What’s included</h2><div class="copy-card included-single"><ul class="included-list"><li>5 flyswatters</li><li>5 picnic benches</li><li>1 cooler (game bag)</li><li>1 swatting zone mat</li><li>42 food tiles: 6 hotdogs, 6 hamburgers, 6 sodas, 6 watermelons, 6 chips, 6 ice cream bars, and 6 ants</li><li>1 horsefly (black marble)</li></ul></div></section>
@@ -483,8 +637,11 @@ button.primary,
 <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onclick="if(event.target===this)closeCheckout()"><div class="checkout-panel"><div class="checkout-modal-head"><h2 id="checkout-title">Preorder FLYSWATTER</h2><button class="close" type="button" onclick="closeCheckout()" aria-label="Close checkout">×</button></div><p class="checkout-modal-intro">We are now accepting preorders for FLYSWATTER. Games will begin shipping out in February.</p><div class="checkout-trust"><span class="checkout-trust-dot"></span><strong>Secure checkout</strong><span>Payment processed by Stripe</span></div><div class="embedded-checkout" id="checkout-form" hidden></div><div class="checkout-quantity-bar"><strong class="checkout-product-label">FLYSWATTER Game</strong><div class="checkout-quantity" aria-label="Checkout quantity"><span>Quantity</span><button type="button" onclick="changeCheckoutQuantity(-1)" aria-label="Decrease quantity">−</button><strong id="checkout-quantity">1</strong><button type="button" onclick="changeCheckoutQuantity(1)" aria-label="Increase quantity">+</button></div></div><p class="checkout-error" id="checkout-error" hidden></p></div></div><div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()" aria-label="Close cart">×</button></div><div id="items"></div><div id="summary"></div></aside></div>
 <script>
 let currentSlide=0;
-function showSlide(n){const slides=document.querySelectorAll(".slide"),dots=document.querySelectorAll(".dot");currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>slide.classList.toggle("active",i===currentSlide));dots.forEach((dot,i)=>dot.classList.toggle("active",i===currentSlide))}
+function showSlide(n){const slides=document.querySelectorAll(".slide"),dots=document.querySelectorAll(".dot"),counter=document.getElementById("gallery-current");currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>slide.classList.toggle("active",i===currentSlide));dots.forEach((dot,i)=>dot.classList.toggle("active",i===currentSlide));if(counter)counter.textContent=String(currentSlide+1).padStart(2,"0")}
 function moveSlide(direction){showSlide(currentSlide+direction)}
+const galleryFrame=document.querySelector(".gallery-frame");let galleryTouchStartX=0;
+if(galleryFrame){galleryFrame.addEventListener("touchstart",e=>{galleryTouchStartX=e.changedTouches[0].clientX},{passive:true});galleryFrame.addEventListener("touchend",e=>{const distance=e.changedTouches[0].clientX-galleryTouchStartX;if(Math.abs(distance)>45)moveSlide(distance<0?1:-1)},{passive:true})}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")moveSlide(-1);if(e.key==="ArrowRight")moveSlide(1)});
 const product={name:"FLYSWATTER",price:34},cartStorageKey="flyswatter-cart-qty";
 let qty=Number(localStorage.getItem(cartStorageKey)||0);
 function saveCart(){localStorage.setItem(cartStorageKey,String(qty))}
