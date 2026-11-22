@@ -219,16 +219,19 @@ async function startCheckout(quantity=1){
     const actionsResult=await checkout.loadActions();
     if(actionsResult.type!=="success")throw new Error("Unable to load payment actions.");
     checkout.on("change",async session=>{
-      const address=session.shippingAddress?.address;
-      if(!address || address.country!=="US" || !address.state)return;
-      const shippingZone=address.state==="AK" || address.state==="HI" ? "ak-hi" : "contiguous";
+      const address=session.shippingAddress?.address || session.shippingAddress || session.shipping?.address;
+      if(!address)return;
+      const country=String(address.country||"").toUpperCase();
+      const state=String(address.state||"").toUpperCase();
+      if(country!=="US" || !state)return;
+      const shippingZone=state==="AK" || state==="HI" || state==="ALASKA" || state==="HAWAII" ? "ak-hi" : "contiguous";
       if(shippingZone===lastShippingZone)return;
       lastShippingZone=shippingZone;
       const updateResult=await actionsResult.actions.runServerUpdate(async()=>{
         const response=await fetch("/api/update-shipping",{
           method:"POST",
           headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({session_id:session.id,country:address.country,state:address.state})
+          body:JSON.stringify({session_id:session.id,country,state})
         });
         const data=await response.json();
         if(!response.ok)throw new Error(data.error||"Unable to update shipping.");
