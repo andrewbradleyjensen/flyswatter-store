@@ -1462,6 +1462,73 @@ button.primary,
     top:224px !important;
   }
 }
+</style>
+<style id="homepage-preorder-announcement">
+.preorder-announcement {
+  max-width:1180px !important;
+  margin:0 auto !important;
+  padding:0 28px 24px !important;
+  position:relative;
+  z-index:8;
+}
+.preorder-banner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  padding:24px 28px;
+  background:#4E2630;
+  border:3px solid #4E2630;
+  border-radius:18px;
+  color:#F3E0C4;
+  box-shadow:6px 6px 0 rgba(23,22,18,.22);
+}
+.preorder-kicker {
+  display:block;
+  color:#F3E0C4;
+  font-family:"Montserrat",sans-serif;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+.preorder-banner h2 {
+  margin:7px 0 4px;
+  color:#F3E0C4 !important;
+  font-family:"Montserrat",sans-serif;
+  font-size:clamp(1.8rem,3.5vw,3.2rem);
+  line-height:.95;
+  letter-spacing:-.04em;
+}
+.preorder-banner p {
+  margin:0;
+  color:rgba(243,224,196,.8);
+  font-size:1rem;
+}
+.preorder-banner .primary {
+  flex:0 0 auto;
+  white-space:nowrap;
+  background:#C14B10;
+  color:#fff !important;
+}
+@media (max-width:760px) {
+  .preorder-announcement {
+    padding:0 18px 18px !important;
+  }
+  .preorder-banner {
+    flex-direction:column;
+    align-items:stretch;
+    gap:18px;
+    padding:22px 20px;
+    border-radius:16px;
+  }
+  .preorder-banner h2 {
+    font-size:clamp(2rem,9vw,3rem);
+  }
+  .preorder-banner .primary {
+    width:100%;
+    text-align:center;
+  }
+}
 </style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
@@ -1470,6 +1537,7 @@ button.primary,
 <div class="hero-copy"><h1>Swat the flies.<br><em>Save the food.</em></h1><p>Race to swat flies, steal food, and fill your bench with six of the same food before someone yells, “Party’s over!”</p><div class="actions"><a class="primary" href="product.html">FLYSWATTER — Preorder Now</a></div></div>
 <div class="product-art hero-illustration" aria-label="FLYSWATTER game illustration"><img class="hero-illustration-image" src="assets/main-page-illustration.webp" alt="A flyswatter and illustrated game cards on an orange checkerboard"></div></section>
 <section class="how-preview" aria-label="How to play"><div class="hero-features" id="how"><div class="feature"><strong>01 · SWAT</strong><p>Flip a tile onto the picnic blanket. Hit the fly before anyone else.</p></div><div class="feature"><strong>02 · STEAL</strong><p>Claim flies and replace tiles on your bench.</p></div><div class="feature"><strong>03 · SCORE</strong><p>Match foods, manage ants, and avoid the horsefly.</p></div></div></section>
+<section class="section preorder-announcement" aria-label="Preorders now available"><div class="preorder-banner"><div><span class="preorder-kicker">NOW ACCEPTING PREORDERS</span><h2>FLYSWATTER is ready to ship.</h2><p>Reserve your game today and be first in line for the fun.</p></div><a class="primary" href="product.html">Preorder Now — $34</a></div></section>
 <section class="section" id="launch"><div class="launch-card"><h2>Help back us on Kickstarter.</h2><p>FLYSWATTER is ready for production, but we need funding to print the first copies. Help back us today!</p><div class="launch-actions"><a class="primary" href="product.html">See the game</a><span class="kickstarter-slot" id="kickstarter">Kickstarter campaign link</span></div></div></section>
 </main>
 <footer class="footer" style="background:#4E2630!important;border-top:0!important;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding:0!important"><div class="footer-inner"><img class="footer-brand-logo" src="assets/kingpin-entertainment-logo.webp" alt="Kingpin Entertainment"><span class="footer-copyright">© Kingpin Entertainment</span><nav class="footer-links" aria-label="Footer links"><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav></div></footer>
