@@ -595,6 +595,34 @@ button.primary,
     margin:0 !important;
   }
 }
+</style>
+<style id="cart-count-circle-badge">
+.cart-count {
+  width:30px !important;
+  min-width:30px !important;
+  height:30px !important;
+  padding:0 !important;
+  display:none !important;
+  place-items:center !important;
+  border-radius:50% !important;
+  background:#F3E0C4 !important;
+  color:#4E2630 !important;
+  border:2px solid #4E2630 !important;
+  font-size:.82rem !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+}
+.cart-count.visible {
+  display:inline-grid !important;
+}
+@media (max-width:760px) {
+  .cart-count {
+    width:28px !important;
+    min-width:28px !important;
+    height:28px !important;
+    font-size:.78rem !important;
+  }
+}
 </style></head>
 <body>
 <header class="nav"><a href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a></header>
