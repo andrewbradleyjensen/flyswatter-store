@@ -1,7 +1,7 @@
 export async function onRequestPost({ request, env }) {
   try {
-    if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PRICE_ID) {
-      return json({ error: "Stripe is not configured yet. Add STRIPE_SECRET_KEY and STRIPE_PRICE_ID in Cloudflare." }, 500);
+    if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PRICE_ID || !env.STRIPE_SHIPPING_RATE_CONTIGUOUS || !env.STRIPE_SHIPPING_RATE_AK_HI) {
+      return json({ error: "Stripe is not fully configured. Add the Stripe secret, price, and both shipping rate IDs in Cloudflare." }, 500);
     }
 
     const body = await request.json().catch(() => ({}));
@@ -18,6 +18,8 @@ export async function onRequestPost({ request, env }) {
     params.set("automatic_tax[enabled]", "false");
     params.set("submit_type", "auto");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
+    params.set("permissions[update][shipping_details]", "server_only");
+    params.set("shipping_options[0][shipping_rate]", env.STRIPE_SHIPPING_RATE_CONTIGUOUS);
     params.set("integration_identifier", "custom_embedded_web_0001");
     params.set("return_url", siteUrl + "/success.html?session_id={CHECKOUT_SESSION_ID}");
     params.set("customer_creation", "always");

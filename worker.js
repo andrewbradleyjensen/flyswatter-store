@@ -1,5 +1,6 @@
 import { onRequestPost as createCheckoutSession } from "./functions/api/create-checkout-session.js";
 import { onRequestPost as stripeWebhook } from "./functions/api/stripe-webhook.js";
+import { onRequestPost as updateShipping } from "./functions/api/update-shipping.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -16,6 +17,10 @@ export default {
 
     if (url.pathname === "/api/stripe-webhook" && request.method === "POST") {
       return stripeWebhook({ request, env, ctx });
+    }
+
+    if (url.pathname === "/api/update-shipping" && request.method === "POST") {
+      return updateShipping({ request, env, ctx });
     }
 
     return env.ASSETS.fetch(request);

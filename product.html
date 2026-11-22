@@ -170,6 +170,7 @@ async function startPreorder(){
 }
 </script><script>
 let embeddedCheckoutStarted=false;
+let lastShippingZone=null;
 function closeCheckout(){document.getElementById("checkout-modal").classList.remove("open");}
 async function startCheckout(quantity=1){
   const modal=document.getElementById("checkout-modal");
@@ -217,6 +218,24 @@ async function startCheckout(quantity=1){
     form.mount("#checkout-form");
     const actionsResult=await checkout.loadActions();
     if(actionsResult.type!=="success")throw new Error("Unable to load payment actions.");
+    checkout.on("change",async session=>{
+      const address=session.shippingAddress?.address;
+      if(!address || address.country!=="US" || !address.state)return;
+      const shippingZone=address.state==="AK" || address.state==="HI" ? "ak-hi" : "contiguous";
+      if(shippingZone===lastShippingZone)return;
+      lastShippingZone=shippingZone;
+      const updateResult=await actionsResult.actions.runServerUpdate(async()=>{
+        const response=await fetch("/api/update-shipping",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({session_id:session.id,country:address.country,state:address.state})
+        });
+        const data=await response.json();
+        if(!response.ok)throw new Error(data.error||"Unable to update shipping.");
+        return data;
+      });
+      if(updateResult.type==="error")showCheckoutError(updateResult.error.message||"Unable to update shipping.");
+    });
     form.on("confirm",async event=>{
       try{await actionsResult.actions.confirm({formConfirmEvent:event})}
       catch(confirmError){showCheckoutError(confirmError.message||"Payment could not be completed.")}
