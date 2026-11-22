@@ -112,7 +112,7 @@ body:before{display:block!important;content:"";position:fixed!important;inset:0!
 .checkout-modal-head{display:flex;align-items:center;justify-content:space-between;gap:18px}
 .checkout-modal-head h2{font-family:"Montserrat",sans-serif;color:var(--olive);font-size:clamp(1.6rem,4vw,2.6rem);margin:0}
 .checkout-modal .close{font-size:2rem;line-height:1}
-.checkout-modal-intro{color:var(--muted);line-height:1.5;margin:10px 0 20px}
+.checkout-modal-intro{color:var(--muted);line-height:1.5;margin:10px 0 20px}.shipping-zone-picker{display:grid;gap:8px;margin:0 0 20px}.shipping-zone-picker label{font-weight:900;color:var(--olive)}.shipping-zone-picker select{width:100%;padding:12px 14px;border:2px solid var(--heading);border-radius:10px;background:#fff;color:var(--ink);font:inherit}
 @media(max-width:760px){.checkout-modal{padding:12px}.checkout-panel{max-height:calc(100vh - 24px);padding:18px}}
 .add-to-cart-button{border:2px solid var(--heading);border-radius:12px;padding:13px 18px;text-decoration:none;font-weight:900;color:var(--heading)}</style></head>
 <body>
@@ -127,7 +127,7 @@ body:before{display:block!important;content:"";position:fixed!important;inset:0!
 <section class="details-section" id="kickstarter"><div class="launch-card"><div class="eyebrow">COMING SOON</div><h2>FLYSWATTER Is Almost Here.</h2><p>We’re preparing the game for launch. Follow the campaign and check back for ordering details.</p><div class="launch-actions"><span class="kickstarter-slot">Kickstarter campaign link coming soon</span></div></div></section>
 </main>
 <footer class="footer" style="background:#4E2630!important;border-top:0!important;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding:0!important"><div class="footer-inner"><img class="footer-brand-logo" src="assets/kingpin-entertainment-logo.webp" alt="Kingpin Entertainment"><span class="footer-copyright">© Kingpin Entertainment</span><nav class="footer-links" aria-label="Footer links"><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav></div></footer>
-<div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onclick="if(event.target===this)closeCheckout()"><div class="checkout-panel"><div class="checkout-modal-head"><h2 id="checkout-title">Preorder FLYSWATTER</h2><button class="close" type="button" onclick="closeCheckout()" aria-label="Close checkout">×</button></div><p class="checkout-modal-intro">We are now accepting preorders for FLYSWATTER. Games will begin shipping out in February.</p><div class="embedded-checkout" id="checkout-form" hidden></div><p class="checkout-error" id="checkout-error" hidden></p></div></div><div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()" aria-label="Close cart">×</button></div><div id="items"></div><div id="summary"></div></aside></div>
+<div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onclick="if(event.target===this)closeCheckout()"><div class="checkout-panel"><div class="checkout-modal-head"><h2 id="checkout-title">Preorder FLYSWATTER</h2><button class="close" type="button" onclick="closeCheckout()" aria-label="Close checkout">×</button></div><p class="checkout-modal-intro">We are now accepting preorders for FLYSWATTER. Games will begin shipping out in February.</p><div class="shipping-zone-picker"><label for="shipping-zone">Where will this order ship?</label><select id="shipping-zone"><option value="">Choose a destination</option><option value="contiguous">Contiguous U.S. — $8.95 shipping</option><option value="ak-hi">Alaska or Hawaii — $19.95 shipping</option></select></div><div class="embedded-checkout" id="checkout-form" hidden></div><p class="checkout-error" id="checkout-error" hidden></p></div></div><div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()" aria-label="Close cart">×</button></div><div id="items"></div><div id="summary"></div></aside></div>
 <script>
 let currentSlide=0;
 function showSlide(n){const slides=document.querySelectorAll(".slide"),dots=document.querySelectorAll(".dot");currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>slide.classList.toggle("active",i===currentSlide));dots.forEach((dot,i)=>dot.classList.toggle("active",i===currentSlide))}
@@ -157,7 +157,7 @@ async function startPreorder(){
     const response=await fetch("/api/create-checkout-session",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({quantity})
+      body:JSON.stringify({quantity,shipping_zone:shippingZone})
     });
     const data=await response.json();
     if(!response.ok||!data.url)throw new Error(data.error||"Unable to start checkout.");
@@ -174,9 +174,14 @@ let lastShippingZone=null;
 function closeCheckout(){document.getElementById("checkout-modal").classList.remove("open");}
 async function startCheckout(quantity=1){
   const modal=document.getElementById("checkout-modal");
-  if(embeddedCheckoutStarted){modal.classList.add("open");return;}
-  embeddedCheckoutStarted=true;
   modal.classList.add("open");
+  const shippingZone=document.getElementById("shipping-zone").value;
+  if(!shippingZone){
+    showCheckoutError("Choose a shipping destination to continue.");
+    return;
+  }
+  if(embeddedCheckoutStarted)return;
+  embeddedCheckoutStarted=true;
   const button=document.getElementById("preorder-button");
   const formContainer=document.getElementById("checkout-form");
   const error=document.getElementById("checkout-error");
@@ -218,27 +223,6 @@ async function startCheckout(quantity=1){
     form.mount("#checkout-form");
     const actionsResult=await checkout.loadActions();
     if(actionsResult.type!=="success")throw new Error("Unable to load payment actions.");
-    checkout.on("change",async session=>{
-      const address=session.shippingAddress?.address || session.shippingAddress || session.shipping?.address;
-      if(!address)return;
-      const country=String(address.country||"").toUpperCase();
-      const state=String(address.state||"").toUpperCase();
-      if(country!=="US" || !state)return;
-      const shippingZone=state==="AK" || state==="HI" || state==="ALASKA" || state==="HAWAII" ? "ak-hi" : "contiguous";
-      if(shippingZone===lastShippingZone)return;
-      lastShippingZone=shippingZone;
-      const updateResult=await actionsResult.actions.runServerUpdate(async()=>{
-        const response=await fetch("/api/update-shipping",{
-          method:"POST",
-          headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({session_id:session.id,country,state})
-        });
-        const data=await response.json();
-        if(!response.ok)throw new Error(data.error||"Unable to update shipping.");
-        return data;
-      });
-      if(updateResult.type==="error")showCheckoutError(updateResult.error.message||"Unable to update shipping.");
-    });
     form.on("confirm",async event=>{
       try{await actionsResult.actions.confirm({formConfirmEvent:event})}
       catch(confirmError){showCheckoutError(confirmError.message||"Payment could not be completed.")}

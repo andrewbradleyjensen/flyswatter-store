@@ -6,6 +6,11 @@ export async function onRequestPost({ request, env }) {
 
     const body = await request.json().catch(() => ({}));
     const quantity = Math.min(Math.max(Number(body.quantity) || 1, 1), 10);
+    const shippingZone = body.shipping_zone === "ak-hi" ? "ak-hi" : body.shipping_zone === "contiguous" ? "contiguous" : "";
+    if (!shippingZone) return json({ error: "Choose a shipping destination before checkout." }, 400);
+    const shippingRate = shippingZone === "ak-hi"
+      ? env.STRIPE_SHIPPING_RATE_AK_HI
+      : env.STRIPE_SHIPPING_RATE_CONTIGUOUS;
     const siteUrl = new URL(request.url).origin;
     const params = new URLSearchParams();
 
@@ -18,13 +23,14 @@ export async function onRequestPost({ request, env }) {
     params.set("automatic_tax[enabled]", "false");
     params.set("submit_type", "auto");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
-    params.set("shipping_options[0][shipping_rate]", env.STRIPE_SHIPPING_RATE_CONTIGUOUS);
+    params.set("shipping_options[0][shipping_rate]", shippingRate);
     params.set("integration_identifier", "custom_embedded_web_0001");
     params.set("return_url", siteUrl + "/success.html?session_id={CHECKOUT_SESSION_ID}");
     params.set("customer_creation", "always");
     params.set("allow_promotion_codes", "true");
     params.set("metadata[product]", "FLYSWATTER");
     params.set("metadata[order_type]", "preorder");
+    params.set("metadata[shipping_zone]", shippingZone);
 
     const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
