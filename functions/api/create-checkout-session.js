@@ -9,14 +9,19 @@ export async function onRequestPost({ request, env }) {
     const siteUrl = new URL(request.url).origin;
     const params = new URLSearchParams();
 
+    params.set("ui_mode", "form");
     params.set("mode", "payment");
     params.set("line_items[0][price]", env.STRIPE_PRICE_ID);
     params.set("line_items[0][quantity]", String(quantity));
-    params.set("success_url", siteUrl + "/success.html?session_id={CHECKOUT_SESSION_ID}");
-    params.set("cancel_url", siteUrl + "/product.html?checkout=cancelled");
-    params.set("customer_creation", "always");
     params.set("billing_address_collection", "auto");
+    params.set("phone_number_collection[enabled]", "false");
+    params.set("automatic_tax[enabled]", "false");
+    params.set("payment_method_collection", "always");
+    params.set("submit_type", "auto");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
+    params.set("integration_identifier", "custom_embedded_web_0001");
+    params.set("return_url", siteUrl + "/success.html?session_id={CHECKOUT_SESSION_ID}");
+    params.set("customer_creation", "always");
     params.set("allow_promotion_codes", "true");
     params.set("metadata[product]", "FLYSWATTER");
     params.set("metadata[order_type]", "preorder");
@@ -25,7 +30,8 @@ export async function onRequestPost({ request, env }) {
       method: "POST",
       headers: {
         "Authorization": "Basic " + btoa(env.STRIPE_SECRET_KEY + ":"),
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Stripe-Version": "2026-03-25.dahlia"
       },
       body: params
     });
@@ -35,7 +41,7 @@ export async function onRequestPost({ request, env }) {
       return json({ error: data.error?.message || "Stripe could not create checkout." }, 502);
     }
 
-    return json({ url: data.url });
+    return json({ client_secret: data.client_secret });
   } catch (error) {
     return json({ error: "Unable to start checkout." }, 500);
   }
