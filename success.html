@@ -360,6 +360,21 @@ button,
 .qty button {
   box-shadow:none !important;
 }
+</style>
+<style id="button-and-facts-shadow-override">
+/* Restore the original black action-button shadow. */
+.primary,
+button.primary,
+.checkout,
+.button {
+  box-shadow:5px 5px 0 #171612 !important;
+}
+/* Keep the product facts row clean: Ages 5+, players, price, etc. */
+.facts,
+.facts > div,
+.facts div {
+  box-shadow:none !important;
+}
 </style></head>
 <body>
 <header class="nav"><a href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a></header>
