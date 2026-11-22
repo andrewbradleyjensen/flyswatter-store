@@ -765,4 +765,10 @@ const nav=document.querySelector(".nav");
 const updateHeader=()=>{const progress=Math.min(window.scrollY/120,1);nav.style.setProperty("--scroll-progress",progress.toFixed(3));};
 window.addEventListener("scroll",updateHeader,{passive:true});
 updateHeader();
-</script></body></html>
+</script>
+<style id="footer-links-move-left">
+@media (min-width:761px){
+  .footer-links{right:255px !important;}
+}
+</style>
+</body></html>
