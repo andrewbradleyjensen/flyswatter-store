@@ -922,13 +922,136 @@ button.primary,
     left:auto !important;
   }
 }
+</style>
+<style id="home-spacing-reorganization">
+@media (min-width:761px) {
+  .hero {
+    min-height:0 !important;
+    padding:58px 32px 34px !important;
+    grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr) !important;
+    align-items:start !important;
+    gap:34px !important;
+  }
+  .hero-copy {
+    padding-top:26px !important;
+  }
+  .hero h1 {
+    font-size:clamp(4rem,6vw,6.4rem) !important;
+    margin-bottom:22px !important;
+  }
+  .hero-copy > p {
+    max-width:470px !important;
+  }
+  .product-art.hero-illustration {
+    height:720px !important;
+    margin:-26px 0 0 !important;
+  }
+  .hero-illustration-image {
+    width:clamp(620px,56vw,840px) !important;
+    margin:-4px -42px 0 auto !important;
+  }
+  .how-preview {
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px 76px;
+  }
+  .how-preview .hero-features {
+    position:static !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:16px !important;
+    align-items:start !important;
+  }
+  .how-preview .hero-features .feature {
+    width:100% !important;
+    min-height:176px !important;
+    padding:22px !important;
+    border-radius:18px !important;
+    transform:none !important;
+  }
+  .how-preview .hero-features .feature:nth-child(1) {
+    transform:translateY(0) rotate(-1deg) !important;
+  }
+  .how-preview .hero-features .feature:nth-child(2) {
+    transform:translateY(18px) rotate(.6deg) !important;
+  }
+  .how-preview .hero-features .feature:nth-child(3) {
+    transform:translateY(36px) rotate(-.8deg) !important;
+  }
+  .section#launch {
+    padding:0 28px 96px !important;
+  }
+}
+@media (min-width:761px) and (max-width:1100px) {
+  .hero {
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+  .product-art.hero-illustration {
+    height:640px !important;
+  }
+  .hero-illustration-image {
+    width:clamp(550px,60vw,720px) !important;
+    margin-right:-64px !important;
+  }
+  .how-preview {
+    padding-left:24px;
+    padding-right:24px;
+  }
+}
+@media (max-width:760px) {
+  .hero {
+    min-height:0 !important;
+    padding:34px 18px 20px !important;
+    gap:24px !important;
+  }
+  .hero-copy {
+    padding:0 !important;
+  }
+  .product-art.hero-illustration {
+    height:auto !important;
+    margin:0 !important;
+  }
+  .hero-illustration-image {
+    width:100% !important;
+    margin:0 !important;
+  }
+  .how-preview {
+    width:100% !important;
+    padding:12px 18px 58px !important;
+  }
+  .how-preview .hero-features {
+    position:static !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    display:grid !important;
+    gap:12px !important;
+  }
+  .how-preview .hero-features .feature {
+    width:100% !important;
+    min-height:0 !important;
+    padding:18px !important;
+    transform:none !important;
+  }
+  .section#launch {
+    padding:0 18px 62px !important;
+  }
+}
 </style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
 <main>
 <section class="hero">
-<div class="hero-copy"><h1>Swat the flies.<br><em>Save the food.</em></h1><p>Race to swat flies, steal food, and fill your bench with six of the same food before someone yells, “Party’s over!”</p><div class="actions"><a class="primary" href="product.html">FLYSWATTER — Preorder Now</a></div><div class="hero-features" id="how"><div class="feature"><strong>01 · SWAT</strong><p>Flip a tile onto the picnic blanket. Hit the fly before anyone else.</p></div><div class="feature"><strong>02 · STEAL</strong><p>Claim flies and replace tiles on your bench.</p></div><div class="feature"><strong>03 · SCORE</strong><p>Match foods, manage ants, and avoid the horsefly.</p></div></div></div>
+<div class="hero-copy"><h1>Swat the flies.<br><em>Save the food.</em></h1><p>Race to swat flies, steal food, and fill your bench with six of the same food before someone yells, “Party’s over!”</p><div class="actions"><a class="primary" href="product.html">FLYSWATTER — Preorder Now</a></div></div>
 <div class="product-art hero-illustration" aria-label="FLYSWATTER game illustration"><img class="hero-illustration-image" src="assets/main-page-illustration.webp" alt="A flyswatter and illustrated game cards on an orange checkerboard"></div></section>
+<section class="how-preview" aria-label="How to play"><div class="hero-features" id="how"><div class="feature"><strong>01 · SWAT</strong><p>Flip a tile onto the picnic blanket. Hit the fly before anyone else.</p></div><div class="feature"><strong>02 · STEAL</strong><p>Claim flies and replace tiles on your bench.</p></div><div class="feature"><strong>03 · SCORE</strong><p>Match foods, manage ants, and avoid the horsefly.</p></div></div></section>
 <section class="section" id="launch"><div class="launch-card"><h2>Help back us on Kickstarter.</h2><p>FLYSWATTER is ready for production, but we need funding to print the first copies. Help back us today!</p><div class="launch-actions"><a class="primary" href="product.html">See the game</a><span class="kickstarter-slot" id="kickstarter">Kickstarter campaign link</span></div></div></section>
 </main>
 <footer class="footer" style="background:#4E2630!important;border-top:0!important;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding:0!important"><div class="footer-inner"><img class="footer-brand-logo" src="assets/kingpin-entertainment-logo.webp" alt="Kingpin Entertainment"><span class="footer-copyright">© Kingpin Entertainment</span><nav class="footer-links" aria-label="Footer links"><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav></div></footer>
