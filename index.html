@@ -1885,14 +1885,16 @@ updateHeader();
 
 <style id="kickstarter-button-style">
 .kickstarter-slot,
-.kickstarter-slot:visited{
+.kickstarter-slot:visited,
+#kickstarter .kickstarter-slot,
+#kickstarter .kickstarter-slot:visited{
   display:inline-flex !important;
   align-items:center !important;
   justify-content:center !important;
   min-height:48px !important;
   padding:13px 20px !important;
   background:#C14B10 !important;
-  color:#F3E0C4 !important;
+  color:#fff !important;
   border:0 !important;
   border-radius:12px !important;
   font-weight:900 !important;
@@ -1901,8 +1903,10 @@ updateHeader();
   transition:transform .2s ease,box-shadow .2s ease,filter .2s ease !important;
 }
 .kickstarter-slot:hover,
-.kickstarter-slot:focus-visible{
-  color:#F3E0C4 !important;
+.kickstarter-slot:focus-visible,
+#kickstarter .kickstarter-slot:hover,
+#kickstarter .kickstarter-slot:focus-visible{
+  color:#fff !important;
   transform:translate(-1px,-1px) !important;
   box-shadow:6px 6px 0 #171612 !important;
   filter:brightness(1.06) !important;
