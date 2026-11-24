@@ -1912,5 +1912,13 @@ updateHeader();
   filter:brightness(1.06) !important;
 }
 </style>
+
+<style id="remove-kickstarter-stars">
+.section#launch .launch-card::after,
+#kickstarter .launch-card::after{
+  content:none !important;
+  display:none !important;
+}
+</style>
 </body>
 </html>
