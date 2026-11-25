@@ -571,6 +571,20 @@ button.primary,
   font-weight:900 !important;
   box-shadow:none !important;
 }
+.gallery-thumb {
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  padding:0 !important;
+}
+.gallery-thumb img {
+  border-radius:0 !important;
+  background:transparent !important;
+}
+.gallery-thumb.active,
+.gallery-thumb.active img {
+  background:transparent !important;
+}
 .dot.active {
   background:#C14B10 !important;
   border-color:#C14B10 !important;
@@ -1663,14 +1677,29 @@ function showCheckoutError(message){
 </style>
 <style id="product-photo-gallery-styles">
 #product-photo-gallery {
-  background:#F3E8D2 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  overflow:visible !important;
 }
 #product-photo-gallery .slide {
-  padding:14px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
 }
 #product-photo-gallery .slide img {
   transform:none !important;
-  border-radius:14px;
+  width:100% !important;
+  height:100% !important;
+  border-radius:0 !important;
+  filter:none !important;
+}
+.gallery-controls {
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  padding:0 !important;
+  box-shadow:none !important;
 }
 .gallery-thumbs {
   justify-content:flex-start !important;
