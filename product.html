@@ -1734,5 +1734,74 @@ function showCheckoutError(message){
   }
 }
 </style>
+<style id="carousel-dot-alignment">
+/* Match the landscape photos' natural shape and bring the controls directly underneath. */
+#product-photo-gallery {
+  aspect-ratio:3 / 2 !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin-top:-8px !important;
+}
+#product-photo-gallery .slide {
+  aspect-ratio:3 / 2 !important;
+  height:auto !important;
+  min-height:0 !important;
+}
+#product-photo-gallery .slide img {
+  display:block !important;
+  object-fit:cover !important;
+}
+.gallery-controls {
+  margin-top:8px !important;
+}
+.gallery-thumbs {
+  flex:1 1 auto !important;
+  justify-content:center !important;
+  gap:8px !important;
+  max-width:none !important;
+  overflow:visible !important;
+  padding:0 !important;
+}
+.gallery-thumb,
+.gallery-thumb.active {
+  display:block !important;
+  width:10px !important;
+  height:10px !important;
+  min-width:10px !important;
+  flex:0 0 10px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:50% !important;
+  background:#4E2630 !important;
+  transform:none !important;
+  transition:transform .18s ease, background .18s ease !important;
+}
+.gallery-thumb span,
+.gallery-thumb img {
+  display:none !important;
+}
+.gallery-thumb.active {
+  background:#C14B10 !important;
+  transform:scale(1.25) !important;
+}
+@media (max-width:760px) {
+  #product-photo-gallery {
+    margin-top:-4px !important;
+  }
+  .gallery-controls {
+    margin-top:6px !important;
+  }
+  .gallery-thumbs {
+    gap:6px !important;
+  }
+  .gallery-thumb,
+  .gallery-thumb.active {
+    width:8px !important;
+    height:8px !important;
+    min-width:8px !important;
+    flex-basis:8px !important;
+  }
+}
+</style>
 </body>
 </html>
