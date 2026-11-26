@@ -2014,6 +2014,12 @@ function showCheckoutError(message){
 }
 </style>
 <style id="product-details-copy-refresh">
+.gallery-frame:before {
+  display:none !important;
+}
+.gallery-frame {
+  background:linear-gradient(145deg, rgba(255,255,255,.28), rgba(243,224,196,.78)) !important;
+}
 .details .status-pill {
   background:#05ce78 !important;
   border-color:#05ce78 !important;
@@ -2061,6 +2067,9 @@ function showCheckoutError(message){
 @media (min-width:761px) {
   .details {
     margin-top:42px !important;
+  }
+  .product-details-feature-image {
+    margin-top:136px !important;
   }
 }
 @media (max-width:760px) {
