@@ -2275,12 +2275,18 @@ h1, h2, h3,
 .hero-image-link {
   display:block !important;
   width:100% !important;
+  pointer-events:auto !important;
+  cursor:pointer !important;
   overflow:hidden !important;
   border-radius:10pt !important;
   line-height:0 !important;
 }
 .hero-image-link .hero-illustration-image {
+  pointer-events:auto !important;
   transition:transform .24s ease,filter .24s ease !important;
+}
+.product-art.hero-illustration {
+  pointer-events:auto !important;
 }
 .hero-image-link:hover .hero-illustration-image,
 .hero-image-link:focus-visible .hero-illustration-image {
