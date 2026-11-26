@@ -2075,18 +2075,38 @@ updateHeader();
 <style id="kickstarter-card-photo">
 #product-kickstarter .launch-card {
   background-color:#4E2630 !important;
-  background-image:
-    linear-gradient(90deg,
-      #4E2630 0%,
-      #4E2630 42%,
-      rgba(78,38,48,.92) 49%,
-      rgba(78,38,48,.48) 56%,
-      rgba(78,38,48,0) 64%,
-      rgba(78,38,48,0) 100%),
-    url('assets/kickstarter-game-night.jpeg') !important;
-  background-size:100% 100%, 50% 100% !important;
-  background-position:center, right center !important;
-  background-repeat:no-repeat !important;
+  background-image:none !important;
+  position:relative !important;
+  isolation:isolate !important;
+}
+#product-kickstarter .launch-card::before {
+  content:"" !important;
+  position:absolute !important;
+  inset:0 0 0 50% !important;
+  z-index:-2 !important;
+  background:url('assets/kickstarter-game-night.jpeg') center / cover no-repeat !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+}
+#product-kickstarter .launch-card::after {
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-1 !important;
+  background:linear-gradient(90deg,
+    #4E2630 0%,
+    #4E2630 40%,
+    rgba(78,38,48,.98) 49%,
+    rgba(78,38,48,.78) 59%,
+    rgba(78,38,48,.42) 70%,
+    rgba(78,38,48,.12) 80%,
+    rgba(78,38,48,0) 92%) !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+}
+#product-kickstarter .launch-card > * {
+  position:relative !important;
+  z-index:1 !important;
 }
 @media (max-width:760px) {
   #product-kickstarter .launch-card {
