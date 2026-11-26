@@ -1992,5 +1992,49 @@ updateHeader();
   }
 }
 </style>
+<style id="site-action-button-system">
+/* Use the Kickstarter campaign button as the shared action-button style. */
+.primary,
+.primary:visited,
+.secondary,
+.secondary:visited,
+.cart-button,
+.cart-button:visited,
+.checkout,
+.add-to-cart-button,
+.kickstarter-slot,
+.kickstarter-slot:visited {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:48px !important;
+  padding:13px 20px !important;
+  background:#C14B10 !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:12px !important;
+  font-weight:900 !important;
+  text-decoration:none !important;
+  box-shadow:5px 5px 0 #171612 !important;
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease !important;
+}
+.primary:hover,
+.primary:focus-visible,
+.secondary:hover,
+.secondary:focus-visible,
+.cart-button:hover,
+.cart-button:focus-visible,
+.checkout:hover,
+.checkout:focus-visible,
+.add-to-cart-button:hover,
+.add-to-cart-button:focus-visible,
+.kickstarter-slot:hover,
+.kickstarter-slot:focus-visible {
+  color:#fff !important;
+  transform:translate(-1px,-1px) !important;
+  box-shadow:6px 6px 0 #171612 !important;
+  filter:brightness(1.06) !important;
+}
+</style>
 </body>
 </html>
