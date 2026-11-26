@@ -2224,5 +2224,35 @@ h1, h2, h3,
   }
 }
 </style>
+<style id="homepage-rule-card-row">
+@media (min-width:761px) {
+  .how-preview {
+    position:static !important;
+    min-height:0 !important;
+    margin:0 auto !important;
+    padding:84px 32px 120px !important;
+  }
+  .how-preview .hero-features {
+    position:static !important;
+    width:100% !important;
+    max-width:none !important;
+    height:auto !important;
+    margin:0 !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:18px !important;
+    align-items:stretch !important;
+  }
+  .how-preview .hero-features .rule-card,
+  .how-preview .hero-features .rule-card:nth-child(1),
+  .how-preview .hero-features .rule-card:nth-child(2),
+  .how-preview .hero-features .rule-card:nth-child(3) {
+    width:100% !important;
+    min-height:190px !important;
+    transform:none !important;
+    position:static !important;
+  }
+}
+</style>
 </body>
 </html>
