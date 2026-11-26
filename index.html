@@ -2083,7 +2083,7 @@ updateHeader();
   content:"" !important;
   position:absolute !important;
   inset:0 0 0 50% !important;
-  z-index:-2 !important;
+  z-index:0 !important;
   background:url('assets/kickstarter-game-night.jpeg') center / cover no-repeat !important;
   border-radius:inherit !important;
   pointer-events:none !important;
@@ -2092,7 +2092,7 @@ updateHeader();
   content:"" !important;
   position:absolute !important;
   inset:0 !important;
-  z-index:-1 !important;
+  z-index:1 !important;
   background:linear-gradient(90deg,
     #4E2630 0%,
     #4E2630 40%,
@@ -2106,7 +2106,17 @@ updateHeader();
 }
 #product-kickstarter .launch-card > * {
   position:relative !important;
-  z-index:1 !important;
+  z-index:2 !important;
+}
+#product-kickstarter .kickstarter-badge {
+  position:absolute !important;
+  top:-20px !important;
+  right:28px !important;
+  width:154px !important;
+  height:auto !important;
+  z-index:3 !important;
+  pointer-events:none !important;
+  transform:rotate(4deg) !important;
 }
 @media (max-width:760px) {
   #product-kickstarter .launch-card {
