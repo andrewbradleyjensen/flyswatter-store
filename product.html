@@ -1504,7 +1504,7 @@ button.primary,
 <script>
 let currentSlide=0,carouselTimer=null;
 function resetCarouselTimer(){clearInterval(carouselTimer);carouselTimer=setInterval(()=>showSlide(currentSlide+1,"next",false),5000)}
-function showSlide(n,direction="next",restartAuto=true){const slides=document.querySelectorAll(".slide"),thumbs=document.querySelectorAll(".gallery-thumb");currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>{slide.classList.toggle("active",i===currentSlide);if(i===currentSlide){slide.classList.remove("slide-in-next","slide-in-prev");void slide.offsetWidth;slide.classList.add(direction==="prev"?"slide-in-prev":"slide-in-next")}});thumbs.forEach((thumb,i)=>thumb.classList.toggle("active",i===currentSlide));if(restartAuto)resetCarouselTimer()}
+function showSlide(n,direction="next",restartAuto=true){const slides=document.querySelectorAll(".slide"),thumbs=document.querySelectorAll(".gallery-thumb"),previousSlide=currentSlide;currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>{slide.classList.remove("active","slide-in-next","slide-in-prev","slide-leaving","slide-out-next","slide-out-prev");if(i===previousSlide&&previousSlide!==currentSlide){slide.classList.add("slide-leaving",direction==="prev"?"slide-out-prev":"slide-out-next");setTimeout(()=>slide.classList.remove("slide-leaving","slide-out-next","slide-out-prev"),600)}if(i===currentSlide){slide.classList.add("active");void slide.offsetWidth;slide.classList.add(direction==="prev"?"slide-in-prev":"slide-in-next")}});thumbs.forEach((thumb,i)=>thumb.classList.toggle("active",i===currentSlide));if(restartAuto)resetCarouselTimer()}
 function moveSlide(direction){showSlide(currentSlide+direction,direction<0?"prev":"next")}
 const galleryFrame=document.querySelector(".gallery-frame");let galleryTouchStartX=0;
 if(galleryFrame){galleryFrame.addEventListener("touchstart",e=>{galleryTouchStartX=e.changedTouches[0].clientX},{passive:true});galleryFrame.addEventListener("touchend",e=>{const distance=e.changedTouches[0].clientX-galleryTouchStartX;if(Math.abs(distance)>45)moveSlide(distance<0?1:-1)},{passive:true})}
@@ -2147,12 +2147,37 @@ h1, h2, h3,
   animation: carousel-slide-in-prev .55s ease-out both !important;
 }
 @keyframes carousel-slide-in-next {
-  0% { opacity:1; transform:translateX(18px); }
+  0% { opacity:.72; transform:translateX(18px); }
   100% { opacity:1; transform:translateX(0); }
 }
 @keyframes carousel-slide-in-prev {
-  0% { opacity:1; transform:translateX(-18px); }
+  0% { opacity:.72; transform:translateX(-18px); }
   100% { opacity:1; transform:translateX(0); }
+}
+#product-photo-gallery .slide.slide-leaving {
+  display:grid !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1 !important;
+}
+#product-photo-gallery .slide.active {
+  position:absolute !important;
+  inset:0 !important;
+  z-index:2 !important;
+}
+#product-photo-gallery .slide.slide-out-next {
+  animation: carousel-slide-out-next .55s ease-out both !important;
+}
+#product-photo-gallery .slide.slide-out-prev {
+  animation: carousel-slide-out-prev .55s ease-out both !important;
+}
+@keyframes carousel-slide-out-next {
+  0% { opacity:1; transform:translateX(0); }
+  100% { opacity:0; transform:translateX(-12px); }
+}
+@keyframes carousel-slide-out-prev {
+  0% { opacity:1; transform:translateX(0); }
+  100% { opacity:0; transform:translateX(12px); }
 }
 @media (prefers-reduced-motion:reduce) {
   #product-photo-gallery .slide.slide-in-next,
