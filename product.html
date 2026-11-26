@@ -2116,19 +2116,21 @@ h1, h2, h3,
 <style id="product-description-icon-cards">
 .product-description-icons {
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(4,60px);
   gap:10px;
+  justify-content:space-between;
   width:100%;
   margin:22px 0 0;
 }
 .product-description-icon.copy-card {
   display:grid;
   place-items:center;
-  aspect-ratio:1;
+  width:60px;
+  height:60px;
   min-width:0;
   padding:10px !important;
-  background:rgba(243,224,196,.72) !important;
-  border:3px solid var(--product-burgundy) !important;
+  background:#f3e8d2 !important;
+  border:0 !important;
   border-radius:20px !important;
   box-shadow:6px 6px 0 rgba(78,38,48,.18) !important;
 }
@@ -2210,8 +2212,12 @@ h1, h2, h3,
 </style>
 <style id="product-name-size-spacing">
 .details .product-name {
-  font-size:clamp(1.35rem,2.6vw,2.25rem) !important;
+  font-size:calc(clamp(1.35rem,2.6vw,2.25rem) + 1pt) !important;
   letter-spacing:-1pt !important;
+  margin-bottom:6px !important;
+}
+.details > h1 {
+  margin-top:0 !important;
 }
 </style>
 </body>
