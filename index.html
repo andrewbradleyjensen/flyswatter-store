@@ -566,7 +566,9 @@ body:before{display:block!important;content:"";position:fixed!important;inset:0!
 </style>
 <style id="sitewide-content-box-shadows">
 /* Consistent theme shadow for text/content panels; image and interaction controls stay clean. */
-.feature,
+   .hero-features .feature,
+   .feature,
+.hero-features .feature,
 .launch-card,
 .copy-card,
 .rule-card,
@@ -2039,6 +2041,23 @@ updateHeader();
   transform:translate(-1px,-1px) !important;
   box-shadow:6px 6px 0 #171612 !important;
   filter:brightness(1.06) !important;
+}
+</style>
+<style id="borderless-cream-cards">
+.hero-features .feature,
+.feature,
+.launch-card,
+.copy-card,
+.rule-card,
+.info-card,
+.facts > div,
+.card {
+  background:#f3e8d2 !important;
+  border:0 !important;
+}
+#product-kickstarter .launch-card {
+  background:#4E2630 !important;
+  border:0 !important;
 }
 </style>
 </body>
