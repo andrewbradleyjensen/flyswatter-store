@@ -1848,7 +1848,32 @@ button.primary,
   color:#4E2630 !important;
   border:0 !important;
 }
-</style><script src="https://js.stripe.com/dahlia/stripe.js"></script></head>
+</style>
+<script src="https://js.stripe.com/dahlia/stripe.js"></script>
+<style id="home-checkout-styles">
+.embedded-checkout{margin-top:20px;max-width:620px;padding:18px 16px 8px;background:#fff;border:1px solid #d8d0c4;border-radius:12px}
+.checkout-trust{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0 4px;color:var(--muted);font-size:.82rem}
+.checkout-trust strong{color:var(--olive);letter-spacing:.04em}
+.checkout-trust-dot{width:8px;height:8px;border-radius:50%;background:var(--olive);flex:0 0 auto}
+.embedded-checkout[hidden]{display:none}
+.checkout-error{color:#8b1e2d;font-weight:700;margin-top:14px}
+.checkout-modal{display:none;position:fixed;inset:0;z-index:30;background:rgba(14,22,19,.62);padding:24px;overflow:auto}
+.checkout-modal.open{display:flex;align-items:center;justify-content:center}
+.checkout-panel{width:min(680px,100%);max-height:calc(100vh - 48px);overflow:auto;background:var(--cream);border:0;border-radius:20px;padding:24px;padding-bottom:0;box-shadow:none}
+.checkout-modal-head{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.checkout-modal-head h2{font-family:"Montserrat",sans-serif;color:var(--olive);font-size:clamp(1.6rem,4vw,2.6rem);margin:0}
+.checkout-modal .close{font-size:2rem;line-height:1}
+.checkout-modal-intro{color:var(--muted);line-height:1.5;margin:10px 0 20px}
+.checkout-quantity-bar{position:sticky;bottom:0;z-index:2;margin:18px -24px -5px;padding:14px 24px;background:#4E2630;border-top:2px solid #4E2630;display:flex;align-items:center;justify-content:space-between;gap:16px;color:#F3E0C4}
+.checkout-product-label{color:#F3E0C4}
+.checkout-quantity-bar .checkout-quantity{color:#F3E0C4}
+.checkout-quantity-bar .checkout-quantity button{background:#F3E0C4;border-color:#F3E0C4;color:#4E2630}
+.checkout-quantity-bar .checkout-quantity strong{color:#F3E0C4}
+.checkout-quantity{display:flex;align-items:center;justify-content:flex-end;gap:12px;color:var(--olive);font-weight:900}
+.checkout-quantity button{width:32px;height:32px;border:2px solid var(--heading);border-radius:50%;background:#fff;color:var(--heading);font-weight:900;font-size:1.1rem;line-height:1}
+.checkout-quantity strong{min-width:24px;text-align:center}
+@media(max-width:760px){.checkout-modal{padding:12px}.checkout-panel{max-height:calc(100vh - 24px);padding:18px;padding-bottom:0}.checkout-quantity-bar{margin-left:-18px;margin-right:-18px;margin-bottom:-5px}}
+</style></head>
 <body>
 <header class="nav" style="border-bottom:5px solid #4E2630!important"><a class="brand" href="index.html" aria-label="FLYSWATTER home"><img class="brand-logo" src="assets/flyswatter-logo-new.webp" alt="FLYSWATTER"></a><button class="cart-button" onclick="openCart()"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1"></circle><circle cx="19" cy="20" r="1"></circle><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"></path></svg>Cart <span id="count" class="cart-count">0</span></button></header>
 <main>
