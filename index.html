@@ -2124,25 +2124,34 @@ updateHeader();
 </style>
 <style id="home-hero-art-final">
 .hero {
-  padding-right:0 !important;
+  padding-right:32px !important;
+}
+.product-art.hero-illustration {
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 !important;
 }
 .hero-illustration-image {
-  content:url('assets/home-hero-art-v3.webp') !important;
+  content:url('assets/home-hero-photo.webp') !important;
   display:block !important;
-  width:clamp(620px,54vw,820px) !important;
-  max-width:none !important;
+  width:100% !important;
+  max-width:100% !important;
   height:auto !important;
   margin-left:0 !important;
   margin-right:0 !important;
+  border-radius:10pt !important;
+  object-fit:cover !important;
 }
 @media (max-width:760px) {
   .hero {
-    padding-right:0 !important;
+    padding-right:18px !important;
   }
   .hero-illustration-image {
     width:100% !important;
-    max-width:none !important;
+    max-width:100% !important;
     margin:0 !important;
+    border-radius:10pt !important;
   }
 }
 </style>
