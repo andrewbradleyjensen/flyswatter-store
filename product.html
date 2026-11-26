@@ -1502,12 +1502,14 @@ button.primary,
 <footer class="footer" style="background:#4E2630!important;border-top:0!important;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding:0!important"><div class="footer-inner"><img class="footer-brand-logo" src="assets/kingpin-entertainment-logo.webp" alt="Kingpin Entertainment"><div class="footer-copy-group"><span class="footer-copyright">© Kingpin Entertainment</span><a class="footer-instagram" href="https://www.instagram.com/flyswatter_thegame/?__d=11" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.7" r="1.2" fill="currentColor"/></svg></a></div><nav class="footer-links" aria-label="Footer links"><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav></div></footer>
 <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" onclick="if(event.target===this)closeCheckout()"><div class="checkout-panel"><div class="checkout-modal-head"><h2 id="checkout-title">Preorder FLYSWATTER</h2><button class="close" type="button" onclick="closeCheckout()" aria-label="Close checkout">×</button></div><p class="checkout-modal-intro">We are now accepting preorders for FLYSWATTER. Games will begin shipping out in February.</p><div class="checkout-trust"><span class="checkout-trust-dot"></span><strong>Secure checkout</strong><span>Payment processed by Stripe</span></div><div class="embedded-checkout" id="checkout-form" hidden></div><div class="checkout-quantity-bar"><strong class="checkout-product-label">FLYSWATTER Game</strong><div class="checkout-quantity" aria-label="Checkout quantity"><span>Quantity</span><button type="button" onclick="changeCheckoutQuantity(-1)" aria-label="Decrease quantity">−</button><strong id="checkout-quantity">1</strong><button type="button" onclick="changeCheckoutQuantity(1)" aria-label="Increase quantity">+</button></div></div><p class="checkout-error" id="checkout-error" hidden></p></div></div><div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>Your cart</h2><button class="close" onclick="closeCart()" aria-label="Close cart">×</button></div><div id="items"></div><div id="summary"></div></aside></div>
 <script>
-let currentSlide=0;
-function showSlide(n){const slides=document.querySelectorAll(".slide"),thumbs=document.querySelectorAll(".gallery-thumb");currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>slide.classList.toggle("active",i===currentSlide));thumbs.forEach((thumb,i)=>thumb.classList.toggle("active",i===currentSlide))}
-function moveSlide(direction){showSlide(currentSlide+direction)}
+let currentSlide=0,carouselTimer=null;
+function resetCarouselTimer(){clearInterval(carouselTimer);carouselTimer=setInterval(()=>showSlide(currentSlide+1,"next",false),3000)}
+function showSlide(n,direction="next",restartAuto=true){const slides=document.querySelectorAll(".slide"),thumbs=document.querySelectorAll(".gallery-thumb");currentSlide=(n+slides.length)%slides.length;slides.forEach((slide,i)=>{slide.classList.toggle("active",i===currentSlide);if(i===currentSlide){slide.classList.remove("slide-in-next","slide-in-prev");void slide.offsetWidth;slide.classList.add(direction==="prev"?"slide-in-prev":"slide-in-next")}});thumbs.forEach((thumb,i)=>thumb.classList.toggle("active",i===currentSlide));if(restartAuto)resetCarouselTimer()}
+function moveSlide(direction){showSlide(currentSlide+direction,direction<0?"prev":"next")}
 const galleryFrame=document.querySelector(".gallery-frame");let galleryTouchStartX=0;
 if(galleryFrame){galleryFrame.addEventListener("touchstart",e=>{galleryTouchStartX=e.changedTouches[0].clientX},{passive:true});galleryFrame.addEventListener("touchend",e=>{const distance=e.changedTouches[0].clientX-galleryTouchStartX;if(Math.abs(distance)>45)moveSlide(distance<0?1:-1)},{passive:true})}
 document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")moveSlide(-1);if(e.key==="ArrowRight")moveSlide(1)});
+resetCarouselTimer();
 const product={name:"FLYSWATTER",price:34},cartStorageKey="flyswatter-cart-qty";
 let qty=Number(localStorage.getItem(cartStorageKey)||0);
 function saveCart(){localStorage.setItem(cartStorageKey,String(qty))}
@@ -2135,6 +2137,30 @@ h1, h2, h3,
   width:100%;
   height:100%;
   object-fit:contain;
+}
+</style>
+<style id="carousel-auto-slide-transition">
+#product-photo-gallery .slide.slide-in-next {
+  animation: carousel-slide-in-next .72s cubic-bezier(.22,1.28,.36,1) both !important;
+}
+#product-photo-gallery .slide.slide-in-prev {
+  animation: carousel-slide-in-prev .72s cubic-bezier(.22,1.28,.36,1) both !important;
+}
+@keyframes carousel-slide-in-next {
+  0% { opacity:.35; transform:translateX(24px) scale(.985); }
+  72% { opacity:1; transform:translateX(-3px) scale(1.002); }
+  100% { opacity:1; transform:translateX(0) scale(1); }
+}
+@keyframes carousel-slide-in-prev {
+  0% { opacity:.35; transform:translateX(-24px) scale(.985); }
+  72% { opacity:1; transform:translateX(3px) scale(1.002); }
+  100% { opacity:1; transform:translateX(0) scale(1); }
+}
+@media (prefers-reduced-motion:reduce) {
+  #product-photo-gallery .slide.slide-in-next,
+  #product-photo-gallery .slide.slide-in-prev {
+    animation:none !important;
+  }
 }
 </style>
 </body>
